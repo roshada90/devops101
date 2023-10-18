@@ -109,4 +109,4 @@ Now go to AWS console and copy the EC2 instance's Public IPv4 DNS.
 
 Put the DNS in the browser and voila!!! We are done!!!  
 Congratulation and happy learning!  
-PS: Don't forget to clean up the resources. 
+**PS: Don't forget to clean up the resources.**

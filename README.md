@@ -21,13 +21,17 @@ Follow this tutorial to deploy an angular application to the AWS EC2.
 Dockerfile can be placed in any repository or any folder inside your repository. For this tutorial, create the dockerfile right beside the package.json file. 
 
 ```
-FROM node:18 as build
+FROM --platform=linux/amd64 node:20-alpine as build
 WORKDIR /crud-app
 COPY package.json /crud-app/
-RUN npm i
+RUN npm install
 COPY . /crud-app/
-EXPOSE 4200
-CMD [ "npm", "run", "build" ]
+RUN npm run build --prod
+# CMD ["npm", "run", "start"]
+
+
+FROM --platform=linux/amd64 nginx:alpine as nginx
+COPY --from=build /crud-app/dist/angular-app /usr/share/nginx/html
 ```
 
 ## Build and upload image to docker hub
